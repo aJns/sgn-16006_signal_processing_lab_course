@@ -13,8 +13,6 @@ R(1:2:end, 2:2:end) = R(2:2:end, 2:2:end);
 G(1:2:end, 1:2:end) = G(1:2:end, 2:2:end);
 G(2:2:end, 2:2:end) = G(2:2:end, 1:2:end);
 
-fullImage(:, :, 1) = R;
-fullImage(:, :, 2) = G;
-fullImage(:, :, 3) = B;
+fullImage = cat(3, R, G, B);
 
 processedImage = uint8(255*fullImage);
