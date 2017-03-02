@@ -26,7 +26,7 @@ processedImage = ppg_interpolation(R, G, B);
 figure;
 subplot(1, 2, 1); imshow(cat(3, R, G, B));
 subplot(1, 2, 2); imshow(processedImage);
-%% MSE
+%% MSE and MAE
 filename = fullfile('data', 'testikuva.tiff');
 image = imread(filename);
 
@@ -51,3 +51,30 @@ MSE3 = mean_square_error(image, processedImage3);
 MAE1 = mean_absolute_error(image, processedImage);
 MAE2 = mean_absolute_error(image, processedImage2);
 MAE3 = mean_absolute_error(image, processedImage3);
+
+MSE=[MSE1; MSE2; MSE3];
+MAE=[MAE1; MAE2;MAE3];
+%% Tic toc
+imSize = [1008 1018];
+imType = 'uint8';
+filename = fullfile('data', 'image2.raw');
+
+[R, G, B] = readimagefile(filename, imSize, imType);
+%%
+
+tic
+processedImage = nn_interpolation(R, G, B);
+time1 = toc;
+
+tic
+processedImage2 = bilinear_interpolation(R, G, B);
+time2 = toc;
+
+tic
+processedImage3 = ppg_interpolation(R, G, B);
+time3 = toc;
+
+Time =[time1; time2; time3];
+%%
+methods = { 'NN-interpolation', 'Bilinear interpolation', 'PPG interpolation'};
+T = table(MSE, MAE, Time, 'RowNames', methods)
