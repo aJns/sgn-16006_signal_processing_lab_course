@@ -26,3 +26,28 @@ processedImage = ppg_interpolation(R, G, B);
 figure;
 subplot(1, 2, 1); imshow(cat(3, R, G, B));
 subplot(1, 2, 2); imshow(processedImage);
+%% MSE
+filename = fullfile('data', 'testikuva.tiff');
+image = imread(filename);
+
+imSize = [512 512];
+imType = 'uint8';
+filename = fullfile('data', 'testikuva.raw');
+
+[R, G, B] = readimagefile(filename, imSize, imType);
+processedImage = nn_interpolation(R, G, B);
+processedImage2 = bilinear_interpolation(R, G, B);
+processedImage3 = ppg_interpolation(R, G, B);
+figure;
+subplot(2, 3, 1); imshow(cat(3, R, G, B));
+subplot(2, 2, 2); imshow(processedImage);
+subplot(2, 2, 3); imshow(processedImage2);
+subplot(2, 2, 4); imshow(processedImage3);
+
+MSE1 = mean_square_error(image, processedImage);
+MSE2 = mean_square_error(image, processedImage2);
+MSE3 = mean_square_error(image, processedImage3);
+
+MAE1 = mean_absolute_error(image, processedImage);
+MAE2 = mean_absolute_error(image, processedImage2);
+MAE3 = mean_absolute_error(image, processedImage3);
