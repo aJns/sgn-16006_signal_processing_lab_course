@@ -22,7 +22,7 @@ filename = fullfile('data', 'image5.raw');
 
 [R, G, B] = readimagefile(filename, imSize, imType);
 close all;
+processedImage = ppg_interpolation(R, G, B);
 figure;
 subplot(1, 2, 1); imshow(cat(3, R, G, B));
-processedImage = ppg_interpolation(R, G, B);
 subplot(1, 2, 2); imshow(processedImage);
