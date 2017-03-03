@@ -1,7 +1,7 @@
 %% setup
 
 % load raw image files
-dataFolder = 'data';
+dataFolder = '.';
 imSize = [1008 1018];
 imType = 'int16';
 
