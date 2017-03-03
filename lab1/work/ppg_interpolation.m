@@ -3,13 +3,10 @@ R = rawImage(:, :, 1);
 G = rawImage(:, :, 2);
 B = rawImage(:, :, 3);
 
-beforeR = R;
-beforeG = G;
-beforeB = B;
-
 pad = 2;
 imgSize = size(R);
 
+% zero padded color channels
 padR = zeros([imgSize(1)+2*pad imgSize(2)+2*pad]);
 padG = zeros([imgSize(1)+2*pad imgSize(2)+2*pad]);
 padB = zeros([imgSize(1)+2*pad imgSize(2)+2*pad]);
@@ -18,6 +15,7 @@ padR(1+pad:end-pad, 1+pad:end-pad) = R;
 padG(1+pad:end-pad, 1+pad:end-pad) = G;
 padB(1+pad:end-pad, 1+pad:end-pad) = B;
 
+% preallocations
 inputR = zeros(2*pad+1);
 inputG = zeros(2*pad+1);
 inputB = zeros(2*pad+1);

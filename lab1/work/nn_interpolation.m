@@ -3,7 +3,7 @@ R = rawImage(:, :, 1);
 G = rawImage(:, :, 2);
 B = rawImage(:, :, 3);
 
-fullImage = zeros([size(R) 3]);
+% implement nearest-neighbor interpolation using matrix indexing.
 
 B(1:2:end, 2:2:end) = B(1:2:end, 1:2:end);
 B(2:2:end, 1:2:end) = B(1:2:end, 1:2:end);
