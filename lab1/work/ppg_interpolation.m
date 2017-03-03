@@ -1,4 +1,8 @@
-function processedImage = ppg_interpolation(R, G, B)
+function processedImage = ppg_interpolation(rawImage)
+R = rawImage(:, :, 1);
+G = rawImage(:, :, 2);
+B = rawImage(:, :, 3);
+
 beforeR = R;
 beforeG = G;
 beforeB = B;

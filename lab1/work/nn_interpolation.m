@@ -1,4 +1,7 @@
-function processedImage = nn_interpolation(R, G, B)
+function processedImage = nn_interpolation(rawImage)
+R = rawImage(:, :, 1);
+G = rawImage(:, :, 2);
+B = rawImage(:, :, 3);
 
 fullImage = zeros([size(R) 3]);
 

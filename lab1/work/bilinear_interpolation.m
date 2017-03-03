@@ -1,4 +1,7 @@
-function processedImage = bilinear_interpolation(R, G, B)
+function processedImage = bilinear_interpolation(rawImage)
+R = rawImage(:, :, 1);
+G = rawImage(:, :, 2);
+B = rawImage(:, :, 3);
 Rpad = padarray(R, [1 1]);
 Gpad = padarray(G, [1 1]);
 Bpad = padarray(B, [1 1]);
