@@ -1,6 +1,51 @@
 \section{Methods}
-In bilinear interpolation the color value of the pixels is calculated from the color value of neighboring pixels with same color i.e sum the values of neighboring pixels and divide it by the amount of neighboring pixels. However, the pixels at the edges of the picture don't always have neighboring pixels with color value or don't have enough of them. To correct this we can just ignore the border pixels, resulting in smaller image, or as we did in the assignment and pad the color arrays with zeros. The color values of the layers are in different pixels, so every layer needs an unique function to calculate the value of an unknown pixel.  Green has the most known color values, and every unknown pixel borders four known pixels, so one function can calculate all values of the green layer.
 
-Only every other row of red and green layers has colorvalues, which has to be taken into account when designing these functions. The rows which have no colorvalues compute the value differently, depending on how many known values border the pixel, and use either four or two values.
+\subsection{Nearest neighbor interpolation}
+In nearest neighbor interpolation, we process the raw Bayer data in squares of
+4 pixels, which contain 1 red, 1 blue and 2 green pixels. For the blue
+channel, all 4 pixels are set to the color value of the 1 blue pixel. The same
+is done for the red channel. For the green channel, the pixels without a green
+color value get their value from the green pixel horizontally next to them.
 
-Colorvalues of the pixels are calculated from the padded color array and added to the unpadded one. After all values of all colorarrays are calculated, the arrays are combined into RGB image.
+The main benefits of NN-interpolation are its speed and simplicity.
+
+\subsection{Bilinear interpolation}
+
+In bilinear interpolation the color value of the pixels is calculated from the
+color value of neighboring pixels with same color i.e sum the values of
+neighboring pixels and divide it by the amount of neighboring pixels. However,
+the pixels at the edges of the picture don't always have neighboring pixels
+with color value or don't have enough of them. To correct this we can just
+ignore the border pixels, resulting in smaller image, or as we did in the
+assignment and pad the color arrays with zeros. The color values of the layers
+are in different pixels, so every layer needs an unique function to calculate
+the value of an unknown pixel.  Green has the most known color values, and
+every unknown pixel borders four known pixels, so one function can calculate
+all values of the green layer.
+
+Only every other row of red and green layers has colorvalues, which has to be
+taken into account when designing these functions. The rows which have no
+colorvalues compute the value differently, depending on how many known values
+border the pixel, and use either four or two values.
+
+Colorvalues of the pixels are calculated from the padded color array and added
+to the unpadded one. After all values of all colorarrays are calculated, the
+arrays are combined into RGB image.
+
+\subsection{Patterned pixel grouping interpolation}
+The Patterned Pixel Grouping, or PPG interpolation is a significantly more
+advanced method of interpolation. We implemented the method using the
+description found here\cite{chuan-kai_lin}.
+
+This method basically tries to take into account the color gradients found in
+the data. It also takes advantage of the greater amount of green data and uses
+it to assess the brightness gradients of the image, which is a feature that the
+human visual system perceives more accurately than changes in color.
+
+First the method calculates a value for all the missing green pixels. It
+calculates the values by first assessing 4 gradients, in the cardinal
+directions, using two neighboring green pixels and the red/blue pixel in place
+of the missing green pixel and the red/blue pixel in the cardinal direction.
+
+The pixels used in the calculation of the smallest gradient are then used to
+calculate the actual green color value for the pixel.
