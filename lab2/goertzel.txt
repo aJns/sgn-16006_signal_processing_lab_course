@@ -1,0 +1,5 @@
+Same values as used in the detect_freq block gave the same results.
+
+However, the n has to be start from 1, because apparently labview starts loops
+from 1 on. If n is set to 0, the 3. stage -- or 'False' condition -- never
+triggers. With n=1, everything works perfectly.
