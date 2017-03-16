@@ -1,0 +1,15 @@
+#Testing:
+
+threshold 8 toimii
+
+sampling frequency 3000Hz => period 333µs
+
+#Results:
+testing succee
+
+had problems with the sampling frequency and period
+first set it to 44100Hz and 10µs (1/(2*44100Hz)), didn't work
+then to 44100Hz and 20µs, didn't work
+finally looked at the frequencies, and came to the conclusion that
+we only needed a sampling frequency of 3000Hz (2*1477Hz)
+and period of 333µs, that worked
