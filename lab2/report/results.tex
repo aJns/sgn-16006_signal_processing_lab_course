@@ -1,78 +1,39 @@
 \section{Results}
+Using both correlation detection and Goertzel-algorithm we calculated the values of the frequencies in the input signal. Then, we compared these values to a threshold. If the value is greater thn this threshold, a corresponding LED will light. We used the following MATLAB code to test the thresholds. The first part of the code goes through alla the frequencies, lighting one LED at a time. The others test on one or two frequencies.
 
-The~\cref{fig:nnInterpolation,fig:blInterpolation,fig:ppgInterpolation}
-contain two images that are obtained by processing the raw Bayer data with our
-implemented interpolation methods.
+\begin{lstlisting}
+t = 0:1/2000:5;
+x = chirp(t, 0, 5, 1000);
+soundsc(x, 2000);
 
-\begin{figure}[H]
-\centering
-\begin{subfigure}{.25\textwidth}
-  \centering
-  \includegraphics[width=.9\linewidth]{nnCrop2}
-  \caption{image 2}
-\label{fig:nnCrop2}
-\end{subfigure}%
-\begin{subfigure}{.25\textwidth}
-  \centering
-  \includegraphics[width=.9\linewidth]{nnCrop5}
-  \caption{image 5}
-\label{fig:nnCrop5}
-\end{subfigure}
-\caption{A zoomed in area of two NN-interpolation processed images}
-\label{fig:nnInterpolation}
-\end{figure}
+%%
+fs = 8192;
+f = 697; % This is the studied frequency
+t = 0:1/fs:5;
+x = sin(2*pi*t*f);
+soundsc(x, fs);
 
+%%
+f = 697; % This is the studied frequency
+n = 1:8192;
+x = sin(2*pi*n*f / 8192);
+soundsc(x);
 
-\begin{figure}[H]
-\centering
-\begin{subfigure}{.25\textwidth}
-  \centering
-  \includegraphics[width=.9\linewidth]{blCrop2}
-  \caption{image 2}
-\label{fig:blCrop2}
-\end{subfigure}%
-\begin{subfigure}{.25\textwidth}
-  \centering
-  \includegraphics[width=.9\linewidth]{blCrop5}
-  \caption{image 5}
-\label{fig:blCrop5}
-\end{subfigure}
-\caption{A zoomed in area of two bilinear interpolation processed images}
-\label{fig:blInterpolation}
-\end{figure}
+%%
+fs = 8192;
+f1 = 770;
+f2 = 1336;
+t = 0:1/fs:5;
+x = sin(2*pi*t*f1)+sin(2*pi*t*f2);
+soundsc(x, fs);
 
+%%
+fs = 8192;
+f1 = 852;
+f2 = 1209;
+t = 0:1/fs:5;
+x = sin(2*pi*t*f1)+sin(2*pi*t*f2);
+soundsc(x, fs);
+\end{lstlisting}
 
-\begin{figure}[H]
-\centering
-\begin{subfigure}{.25\textwidth}
-  \centering
-  \includegraphics[width=.9\linewidth]{ppgCrop2}
-  \caption{image 2}
-\label{fig:ppgCrop2}
-\end{subfigure}%
-\begin{subfigure}{.25\textwidth}
-  \centering
-  \includegraphics[width=.9\linewidth]{ppgCrop5}
-  \caption{image 5}
-\label{fig:ppgCrop5}
-\end{subfigure}
-\caption{A zoomed in area of two patterned pixel grouping interpolation processed images}
-\label{fig:ppgInterpolation}
-\end{figure}
-
-
-The table~\ref{tab:results} contains the Mean Squared Error, Mean Absolute
-Error and time it took to run the interpolation function. The error rates were
-obtained by processing the raw data with our implemented functions, and
-comparing that result to a TIFF encoded file of the same data. The computation
-times were obtained using Matlab's tic-toc timetaking function. They'll
-depend on the computer used, but what can be objectively compared are their
-relative durations.
-\begin{table}[H]
-  \centering
-  \caption{Results from the different methods}
-\label{tab:results}
-  \includegraphics[width=1\linewidth]{results_table}
-\end{table}
-
-
+Using these tests we were able to pinpoint a threshold which would be able to distinguish the different frequencies. With sampling frequency of 3000HZ and period of period 333µs the threshold is 8 in both methods.
