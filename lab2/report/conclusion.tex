@@ -1,2 +1,6 @@
 \section{Conclusions}
-With correct parameters the threshold can be found experimentally. At first, we tested correlation detection with sampling frequency of 44100Hz and period of 10µs. These parameters worked  with the first part of the Matlab code, resulting in threshold of 90. However, this threshold wouldn't work with the other Matlab tests. Then we changed the values to 3000HZ and 333µs and all test worked with threshold of 8. Goertzel-algorithm passed the tests with same values, but we had to start indexing n from 1.
+With correct parameters the threshold can be found experimentally using input signal that contain only one frequency.Then only one LED should be lit. Experimenting with different frequencies will give the most accurate threshold.
+
+At first, we tested correlation detection with sampling frequency of 44100Hz and period of 10µs. These parameters worked  with the first part of the Matlab code, resulting in threshold of 90. However, this threshold wouldn't work with the other Matlab tests. Then we changed the values to 3000HZ and 333µs and all test worked with threshold of 8. Goertzel-algorithm passed the tests with same values, but we had to start indexing n from 1.
+
+Using these methods we can detect the used signal and also the number pressed in a phone using DTMF signals.
