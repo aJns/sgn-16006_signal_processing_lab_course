@@ -1,0 +1,11 @@
+Assignment 1:
+
+Q: What is the sampling frequency of the signal?
+A: 8000
+
+Q: What is the length of one frame in samples for the given sampling f?
+A: 240
+
+Q: What are the indices of the DFT bins belonging to the frequency band 1-2kHz?
+A: 128-256
+
