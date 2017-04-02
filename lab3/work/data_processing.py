@@ -4,8 +4,13 @@ import numpy as np
 import soundfile as sf
 
 def get_features(filename):
-    frameLength = 30
-    frameOverlap = 15
+    frameDurationMs = 30
+    frameOverlapMs = 15
     data, Fs = sf.read(filename)
+
+    frameLength = (frameDurationMs/1000)*Fs;
+    frameOffset = (frameOverlapMs/1000)*Fs;
+
+    hann = np.hanning()
     return filename
 
