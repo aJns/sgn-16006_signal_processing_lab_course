@@ -6,6 +6,8 @@
 import matplotlib.pyplot as plt
 import soundfile as sf
 import numpy as np
+import os
+from sklearn.model_selection import train_test_split
 
 # imports from other script files
 import data_processing as dp
@@ -15,6 +17,7 @@ import data_processing as dp
 
 if __name__ == "__main__":
 
+    # %% Assigment 1
     filename = "signal.wav"
     frameDurationMs = 30
     frameOverlapMs = 15
@@ -62,7 +65,7 @@ if __name__ == "__main__":
 
     binIndices = (kHzFreqBands*(binFreqRatio*1000)).astype(int)
 
-    bandCount = 4
+    bandCount = max(kHzFreqBands.shape)
     bandEnergyRatios = np.zeros(bandCount)
 
     for i in range(bandCount):
@@ -72,7 +75,59 @@ if __name__ == "__main__":
         bandEnergyRatios[i] = bandEnergy/totalEnergy
 
     plt.figure()
-    plt.bar(range(4), bandEnergyRatios, tick_label=["0 - 0.5 kHz", "0.5 - 1 kHz", "1 - 2 kHz", "2 - 4 kHz"])
+    plt.bar(range(bandCount), bandEnergyRatios, tick_label=["0 - 0.5 kHz", "0.5 - 1 kHz", "1 - 2 kHz", "2 - 4 kHz"])
+
+
+    # %% Assigment 2
+    frameDurationMs = 30
+    frameOverlapMs = 15
+    bins = 1024
+    kHzFreqBands = np.array([
+        [0,   0.5],
+        [0.5, 1],
+        [1,   2],
+        [2,   4]
+        ])
+
+
+    dataDirectory = "noise_data"
+    filenames = os.listdir(dataDirectory)
+    sampleRate = 8000
+    clipLengthS = 1
+    clipLengthSamples = clipLengthS*sampleRate
+    totalClipCount = 0
+    
+    for i, filename in enumerate(filenames):
+        fullPath = dataDirectory + "/" + filename
+        data, Fs = sf.read(fullPath)
+
+        totalClipCount = totalClipCount + np.int(data.size/clipLengthSamples)
+
+    clips = np.zeros([totalClipCount, clipLengthSamples])
+    labels = np.zeros(totalClipCount)
+
+    clipCounter = 0
+    
+    for i, filename in enumerate(filenames):
+        fullPath = dataDirectory + "/" + filename
+        data, Fs = sf.read(fullPath)
+
+        clipCount = np.int(data.size/clipLengthSamples)
+
+        for j in range(clipCount):
+            start = j*clipLengthSamples
+            end = start + clipLengthSamples
+            clips[clipCounter, :] = data[start:end]
+            labels[clipCounter] = i
+            clipCounter = clipCounter + 1
+
+
+    features = np.zeros([totalClipCount, max(kHzFreqBands.shape)])
+    for i in range(clips.shape[0]):
+        features[i,:] = dp.get_features(clips[i, :], sampleRate,
+                frameDurationMs, frameOverlapMs, kHzFreqBands, bins)
+
+    X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.20)
 
 
 
