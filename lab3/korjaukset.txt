@@ -1,0 +1,28 @@
+Piirteiden lasku ja luokittelija on toteutettu oikein, mutta työssä on jonkin
+verran puutteita joten en voi sitä vielä hyväksyä. Korjatkaa työ seuraavilta
+osin:
+
+-Ensimmäisen tehtävän plotit on tehty 51. freimistä. Pythonissa indeksointi
+alkaa nollasta, joten indeksinä pitäisi olla 49. Korjatkaa tämä koodiin ja
+liittäkää uudet kuvat raporttiin.
+
+-Tulosten raportointi ei ole riittävää. Eri luokkien tunnistustarkkuutta ei ole
+ilmoitettu numeerisesti, vaikka työohjeessa pyydettiin näin tekemään.
+Värimatriisit ovat hyvä lisä raporttiin, mutta lisäksi tarvitaan numeeriset
+luokittelutarkkuudet. Lisätkää nämä. En myöskään allekirjoita väitettä "No
+class sticks out as being very difficult to classify", koska osassa luokista
+alle puolet näytteistä tunnistetaan oikein. Analysoikaa tarkemmin eroja
+luokkien tunnistuksessa. Mitkä luokat sekoittuvat toisiinsa helposti, ja mikä
+tähän voisi olla syynä? Mitkä luokat tunnistetaan erittäin hyvin, mikä tähän
+voisi olla syynä?
+
+-Ohjelmalla ei ole mahdollista vertailla tuloksia k:n eri arvoilla. Tämä johtuu
+siitä, että datan jako testi- ja opetusdataan tehdään satunnaisesti. Tällöin
+jokainen ajo samallakin k:n arvolla tuottaa eri tuloksen. Vertailu pitää siis
+tehdä siten, että saman ajon aikana lasketaan tulokset k:n eri arvoilla (k=1 ja
+k=5).  Korjatkaa tämä, ja vertailkaa tuloksia raportissa: "Compare the overall
+classification accuracy and also classification of individual scenes" (ks.
+työohje, luku 3.3).
+
+Tehkää työhön yllä mainitut korjaukset ja palauttakaa se viimeistään ensi
+viikon tiistaina.

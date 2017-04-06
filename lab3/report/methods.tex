@@ -14,9 +14,9 @@ frame has 240 samples.
 These frames are then multiplied, or windowed using the Hanning window
 function. In figure~\ref{fig:hann50} there's the waveform of the 50th windowed
 frame.
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\linewidth]{50-hann-window}
+  \includegraphics[width=1\linewidth]{50-hann-window}
   \caption{50th Hanning-windowed frame}
 \label{fig:hann50}
 \end{figure}
@@ -24,9 +24,9 @@ frame.
 Then we get the discrete fourier transform of the windowed frames,
 with a bin size of 1024. In figure~\ref{fig:amp_spec} there's the amplitude
 spectrum of the 50th frame.
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\linewidth]{50-hann-window-fft}
+  \includegraphics[width=1\linewidth]{50-hann-window-fft}
   \caption{Amplitude spectrum of the 50th frame}
 \label{fig:amp_spec}
 \end{figure}
@@ -37,9 +37,9 @@ bands. For example, the indices of the frequency band \(1-2 kHz\) are 128 to
 calculated by dividing the energy of a subband by the total energy of that
 frame. In figure~\ref{fig:features} there's a visualization of the 50th frames
 extracted features.
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\linewidth]{50-frame-features}
+  \includegraphics[width=1\linewidth]{50-frame-features}
   \caption{Features of the 50th frame}
 \label{fig:features}
 \end{figure}
@@ -56,25 +56,25 @@ distances between the sample whose label we're predicting, and all the training
 samples. When we have the distances, we take the k-lowest (ie.\ nearest), and
 out of those samples we take the most common.
 
-First we classify using only one neighbor. The accuracy was reported by scikit
-learn as 69\%. In figure~\ref{fig:conf_mat} we can see the confusion matrix.
-The classifier seems to have problems with label number 7, but all in all the
-results are pretty good.
-\begin{figure}[H]
+First we classify using only one neighbor. The overall accuracy was reported by
+scikit-learn as 72.1\%. In figure~\ref{fig:conf_mat} we can see the confusion
+matrix. The classifier seems to have problems with label number 7, but all in
+all the results are pretty good.
+\begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\linewidth]{conf_matrix}
+  \includegraphics[width=1\linewidth]{conf_matrix}
   \caption{Confusion matrix of k=1 classifier}
 \label{fig:conf_mat}
 \end{figure}
 
 
-Then we run the classifier with 9 neighbors. This time the accyracy was 70\%.
+Then we run the classifier with 5 neighbors. This time the accuracy was 73.5\%.
 Figure~\ref{fig:conf_mat_k9} has the confusion matrix of that classifier. No
 class sticks out as being very difficult to classify.
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\linewidth]{conf_matrix_k9}
-  \caption{Confusion matrix of k=9 classifier}
+  \includegraphics[width=1\linewidth]{conf_matrix_k9}
+  \caption{Confusion matrix of k=5 classifier}
 \label{fig:conf_mat_k9}
 \end{figure}
 

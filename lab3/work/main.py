@@ -16,7 +16,7 @@ from sklearn.metrics import accuracy_score
 import data_processing as dp
 from classifier import NearestNeighbor
 
-
+# %%
 
 
 if __name__ == "__main__":
@@ -55,10 +55,11 @@ if __name__ == "__main__":
 
     fftFrequencies = np.fft.fftfreq(bins, 1/Fs)
 
-    frame50DFT = np.fft.fft(frameArray[50,:], bins)
+    frame50Index = 49
+    frame50DFT = np.fft.fft(frameArray[frame50Index,:], bins)
     
     plt.figure()
-    plt.plot(frameArray[50,:])
+    plt.plot(frameArray[frame50Index,:])
 
     plt.figure()
     plt.plot(fftFrequencies, np.abs(frame50DFT))
@@ -133,20 +134,16 @@ if __name__ == "__main__":
 
     X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.20)
 
-    # %% classification
-    k = 9
+    # classification k=1
+    k = 1
     clf = NearestNeighbor(k)
     clf.train(X_train, y_train)
     y_pred = clf.predict(X_test)
 
     conf_matrix = confusion_matrix(y_test, y_pred)
-    
-    # %%
-    print(conf_matrix)
-
     # Show confusion matrix in a separate window
     plt.matshow(conf_matrix)
-    plt.title('Confusion matrix')
+    # plt.title('Confusion matrix')
     plt.colorbar()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
@@ -155,9 +152,20 @@ if __name__ == "__main__":
     print(accuracy_score(y_test, y_pred))
 
 
+    # classification k=5
+    k = 5
+    clf = NearestNeighbor(k)
+    clf.train(X_train, y_train)
+    y_pred = clf.predict(X_test)
 
+    conf_matrix = confusion_matrix(y_test, y_pred)
 
+    # Show confusion matrix in a separate window
+    plt.matshow(conf_matrix)
+    # plt.title('Confusion matrix')
+    plt.colorbar()
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+    plt.show()
 
-
-
-
+    print(accuracy_score(y_test, y_pred))
