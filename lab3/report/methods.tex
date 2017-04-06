@@ -56,6 +56,37 @@ distances between the sample whose label we're predicting, and all the training
 samples. When we have the distances, we take the k-lowest (ie.\ nearest), and
 out of those samples we take the most common.
 
+The data set we use in the classification is the \textit{Environmental Noise
+Data Set (Series 2)} recorded by the University of East Anglia. In the test
+code and results we refer classes by their index number, but in
+table~\ref{tab:classes} we've compiled the class names and numbers together.
+\begin{table}
+  \centering
+  \caption{Class names and the corresponding numbers}
+  \begin{tabular}{lc}  
+    \toprule
+    \cmidrule(r){1-2}
+    Class name    & Class number \\
+    \midrule
+
+    Buildingsite & 1   \\
+    Bus & 2   \\
+    Car & 3   \\
+    Car highway & 4   \\
+    Laundrette & 5   \\
+    Office & 6   \\
+    Presentation & 7   \\
+    Shopping centre & 8   \\
+    Street people & 9   \\
+    Street traffic & 10   \\
+    Supermarket & 11   \\
+    Train & 12   \\
+
+    \bottomrule
+  \end{tabular}
+\label{tab:classes}
+\end{table}
+
 First we classify using only one neighbor. The overall accuracy was reported by
 scikit-learn as 72.1\%.
 Table~\ref{tab:accuracy_k1} has the prediction accuracies of the individual

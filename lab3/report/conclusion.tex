@@ -4,23 +4,51 @@
 In this assigment, the overall classification accuracy didn't improve
 significantly by increasing the k value. The accuracy with k=1 was 72.1\%, and
 with k=5 73.5\% which is only a 1.4 percentage point increase. In many test
-runs the accuracies were within <0.1\% of each other.
+runs the accuracies were within \(<0.1\%\) of each other.
+
+If we look at the individual classification accuracies, we see that some
+classes are classified very accurately, and some very poorly. The classifier
+performs worst on classes 2, 8, 9 and 11. In most cases, increasing k improves
+the accuracy of classes that were already accurate with k=1, except for classes
+7 and 10. The classifier works best on classes 1 and 6, which have a 100\%
+accuracy with the k=5 classifier, although this is unlikely to be the case
+in realistic use cases.
 
 Looking at the confusion matrices, one interesting thing we see is that with
 k=5 there's less confusion overall, except for classes 11, 8 and to a lesser
-extent 6, which are mislabeled as classes 8, 12 and 4 respectively. The rate of
-correct labels is improved with k=5, most noticeably with class 12.
+extent 6, which are often mislabeled as classes 8, 12 and 4 respectively. The
+rate of correct labels is improved with k=5, most noticeably with classes 3 and
+12.
 
 \subsection{Conclusions}
-In realistic situations nearest neighbor isn't the greatest classifier because
-a) there are more accurate classifiers and b) it's slow at classifying. It's
+If we look at the worst and best classified classes and their names, we can
+take some guesses as to why the classifier performs as it does.
+
+The classifier performed worst on the following scenes: Bus, Shopping centre,
+Street [with] people and Supermarket. What these all seem to have in common is
+that they have a lot of people and probably also other noises. They probably
+have a lot of energy on all the frequency bands. On the other hand, the
+classifier performed best on the scenes Buildingsite and Office.  Although
+buildingsites are very noisy, their noises have a certain pattern to them, and
+there's not a lot of different noises. The Office on the other hand is just
+quiet, with some talking maybe.
+
+The classifier seemed to also confuse the Supermarket and Shopping centre with
+each other, which isn't really suprising. Most people would take a while to
+differentiate them.
+
+For such a simple method and implementation, our program performs surprisingly
+well. We can detect some scenes with very high accuracies.  However, in
+realistic situations nearest neighbor isn't the greatest classifier because a)
+there are more accurate classifiers and b) it's slow at classifying. It's
 pretty much the slowest classifier at classifying, because it has to go through
 the whole training data each time it classifies something. Contrast it with
 other classifiers like random forests, which can take a while to train but
 whose classification is pretty much instantaneous.
 
 \subsection{Feedback}
-The instructions were easy enough to follow. I don't know if I learned anything
-super useful, as framing and nearest neighbor classifiers are pretty basic
-info. It took us about 4--5 hours to do the whole assignment and an additional 2
-hours for the corrections.
+The instructions were easy enough to follow. Framing and nearest neighbor
+classifiers are things that are though on the basic courses, so most of the
+things in this assigment were not new. However it was interesting doing the
+whole classification procedure from start to finish.  It took us about 4--5
+hours to do the whole assignment and an additional 2 hours for the corrections.
