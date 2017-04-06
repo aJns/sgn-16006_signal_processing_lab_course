@@ -57,9 +57,39 @@ samples. When we have the distances, we take the k-lowest (ie.\ nearest), and
 out of those samples we take the most common.
 
 First we classify using only one neighbor. The overall accuracy was reported by
-scikit-learn as 72.1\%. In figure~\ref{fig:conf_mat} we can see the confusion
-matrix. The classifier seems to have problems with label number 7, but all in
-all the results are pretty good.
+scikit-learn as 72.1\%.
+Table~\ref{tab:accuracy_k1} has the prediction accuracies of the individual
+classes.
+\begin{table}
+  \centering
+  \caption{The prediction accuracies of the NN classifier when k=1}
+  \begin{tabular}{cc}  
+    \toprule
+    \cmidrule(r){1-2}
+    Class    & Classification accuracy (\%) \\
+    \midrule
+
+    1	& 98.46  \\
+    2	& 50.00  \\
+    3	& 77.78  \\
+    4	& 79.69  \\
+    5	& 74.24  \\
+    6	& 100.00  \\
+    7	& 73.13  \\
+    8	& 52.46  \\
+    9	& 50.94  \\
+    10	& 77.78  \\
+    11	& 46.03  \\
+    12	& 78.26  \\
+
+    \bottomrule
+  \end{tabular}
+\label{tab:accuracy_k1}
+\end{table}
+
+
+In figure~\ref{fig:conf_mat} we can see the color plot
+of the normalized confusion matrix.
 \begin{figure}[h]
   \centering
   \includegraphics[width=1\linewidth]{conf_matrix}
@@ -69,13 +99,42 @@ all the results are pretty good.
 
 
 Then we run the classifier with 5 neighbors. This time the accuracy was 73.5\%.
-Figure~\ref{fig:conf_mat_k9} has the confusion matrix of that classifier. No
-class sticks out as being very difficult to classify.
+Table~\ref{tab:accuracy_k5} has the prediction accuracies of the individual
+classes.
+\begin{table}
+  \centering
+  \caption{The prediction accuracies of the NN classifier when k=5}
+  \begin{tabular}{cc}  
+    \toprule
+    \cmidrule(r){1-2}
+    Class    & Classification accuracy (\%) \\
+    \midrule
+
+    1	& 100.00  \\
+    2	& 53.85  \\
+    3	& 88.89  \\
+    4	& 84.38  \\
+    5	& 80.30  \\
+    6	& 100.00  \\
+    7	& 67.16  \\
+    8	& 54.10  \\
+    9	& 54.72  \\
+    10	& 74.07  \\
+    11	& 39.68  \\
+    12	& 84.06  \\
+
+    \bottomrule
+  \end{tabular}
+\label{tab:accuracy_k5}
+\end{table}
+
+Figure~\ref{fig:conf_mat_k5} has the color plot of the normalized confusion
+matrix of that classifier.
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\linewidth]{conf_matrix_k9}
+  \includegraphics[width=1\linewidth]{conf_matrix_k5}
   \caption{Confusion matrix of k=5 classifier}
-\label{fig:conf_mat_k9}
+\label{fig:conf_mat_k5}
 \end{figure}
 
 

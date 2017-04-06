@@ -1,13 +1,26 @@
-\section{Conclusions}
+\section{Results and conclusions}
 
-In conclusion the classifier was pretty good at classifying different
-environments, considering how simple the implementation was. In realistic
-situations nearest neighbor isn't the greatest classifier because a) it isn't
-that good and b) it takes a long time. It's pretty much the slowest classifier
-at classifying, because it has to go through the whole training data each time
-it classifies something.
+\subsection{Results}
+In this assigment, the overall classification accuracy didn't improve
+significantly by increasing the k value. The accuracy with k=1 was 72.1\%, and
+with k=5 73.5\% which is only a 1.4 percentage point increase. In many test
+runs the accuracies were within <0.1\% of each other.
+
+Looking at the confusion matrices, one interesting thing we see is that with
+k=5 there's less confusion overall, except for classes 11, 8 and to a lesser
+extent 6, which are mislabeled as classes 8, 12 and 4 respectively. The rate of
+correct labels is improved with k=5, most noticeably with class 12.
+
+\subsection{Conclusions}
+In realistic situations nearest neighbor isn't the greatest classifier because
+a) there are more accurate classifiers and b) it's slow at classifying. It's
+pretty much the slowest classifier at classifying, because it has to go through
+the whole training data each time it classifies something. Contrast it with
+other classifiers like random forests, which can take a while to train but
+whose classification is pretty much instantaneous.
 
 \subsection{Feedback}
 The instructions were easy enough to follow. I don't know if I learned anything
 super useful, as framing and nearest neighbor classifiers are pretty basic
-info. It took us about 4-5 hours to done the whole assignment
+info. It took us about 4--5 hours to do the whole assignment and an additional 2
+hours for the corrections.
